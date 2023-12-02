@@ -1,0 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.form-width {
+  width: clamp(300px, 50%, 60%);
+}
