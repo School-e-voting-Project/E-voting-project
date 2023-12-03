@@ -24,17 +24,16 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full min-h-screen grid place-items-center bg-secondary">
+    <div className="w-full min-h-screen grid place-items-center bg-accent">
       <div className="form-width p-4 bg-white rounded shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-          
             <input
               type="email"
               id="email"
               name="email"
-              placeholder = "Email"
+              placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
               className="mt-1 p-2 w-full border rounded-md"
@@ -42,12 +41,11 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-
             <input
               type="password"
               id="password"
               name="password"
-              placeholder = "Password"
+              placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
               className="mt-1 p-2 w-full border rounded-md"
@@ -56,7 +54,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="bg-primatext-white p-2 rounded-md hover:bg-blue-600"
+            className="bg-primary text-white p-2 rounded-md hover:bg-blue-600"
           >
             Login
           </button>
