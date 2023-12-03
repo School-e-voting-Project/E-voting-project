@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-      primary: "#9c27b0",
-      secondary: "#ffffff",
-      accent: "#f3e5f5",
-      }
-      
+        primary: "hsl(274,64%,40%)",
+        secondary: "#ffffff",
+        accent: "hsla(0,0%,90%,0.685)",
+        gray: "hsla(0,0%,70%)",
+      },
     },
   },
   plugins: [],

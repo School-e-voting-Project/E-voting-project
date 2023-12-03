@@ -1,60 +1,21 @@
 import { useState } from "react";
+import useLogin from "@/hooks/useForm";
+import Input from "@/components/Input";
 
 const Login = () => {
-  // State for form fields
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your logic for form submission here
-    console.log("Form submitted with data:", formData);
-  };
+  const { handleSubmit } = useLogin();
 
   return (
     <div className="w-full min-h-screen grid place-items-center bg-accent">
-      <div className="form-width p-4 bg-white rounded shadow-md">
-        <h2 className="text-2xl font-semibold mb-4">Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
-            />
-          </div>
+      <div className="form-width p-8 bg-white rounded rounded-xl shadow-md">
+        <h2 className="text-2xl font-semibold mb-8">Login</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-12">
+        <Input type = "email" label = "email" />
+        <Input type = "password" label = "password" />
+        
           <button
             type="submit"
-            className="bg-primary text-white p-2 rounded-md hover:bg-blue-600"
+            className="bg-primary w-full text-white py-4 rounded-md hover:bg-blue-600"
           >
             Login
           </button>
