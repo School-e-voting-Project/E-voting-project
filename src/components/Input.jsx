@@ -11,7 +11,7 @@ export default function Input({ type, name, label }) {
   } = useLogin();
 
   const focusedLabel = "text-sm transform -translate-y-full";
-  const blurredLabel = "bottom-2 text-md";
+  const blurredLabel = "bottom-[20%] text-md";
   const errorClass = errors[name] ? "border-b-2 border-b-red-500" : "";
 
   return (
@@ -35,9 +35,9 @@ export default function Input({ type, name, label }) {
       >
         {label}
       </label>
-      {/*errors[name] && (
-        <p className="text-red-500 text-sm mt-1">{errors[name]}</p>
-      )*/}
+      {errors[name] && (
+        <p className="text-red-500 absolute text-sm">{errors[name]}</p>
+      )}
     </div>
   );
 }

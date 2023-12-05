@@ -12,8 +12,8 @@ const useForm = () => {
 
   //error fields
   const [errors, setErrors] = useState({
-    password: "wrong password",
-    id: "wrong id"
+  password: "haha",
+  id: "stupid"
   });
 
   // Handle form input changes
