@@ -1,21 +1,15 @@
+// useForm.js
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import credentials from "@/constants/loginInfo.json";
-import { formDefault } from "@/constants/default.js";
+import { formDefault, errorDefault } from "@/constants/default.js";
 
-const useForm = () => {
-  
-  // State for form fields
+const useForm = ({ setErrors }) => {
   const [formData, setFormData] = useState(formDefault);
+
   const [isFocused, setIsFocused] = useState(false);
 
-  //error fields
-  const [errors, setErrors] = useState({
-    password: "haha",
-    userId: "stupid",
-  });
-
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -25,31 +19,39 @@ const useForm = () => {
     }));
   };
 
-  // handle validation
   const validateField = (name, value) => {
-    // For example, if the email field has an error: setErrors({ ...errors, email: 'Invalid email format' });
+    // Imdplement your validation logic here
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted")
-    console.log(formData);
-  };
+    
 
-  useEffect(() => {
-    console.log("formData changed:", formData);
-    // You can add more debugging logic here if needed
-  }, [formData]);
+    // Validate the entered credentials
+    const user = credentials.find(
+      (u) => u.name === formData.userId && u.password === formData.password
+    );
+
+    if (user) {
+      // Successful login
+      console.log("Login successful!");
+      setErrors(errorDefault);
+      setFormData(formDefault);
+    } else {
+      // Invalid credentials
+      setErrors({
+        userId: "Invalid username or password",
+        password: "Invalid username or password",
+      });
+    }
+  };
 
   return {
     isFocused,
     setIsFocused,
-    errors,
-    setErrors,
     handleInputChange,
-    handleSubmit,
     formData,
+    handleSubmit
   };
 };
 

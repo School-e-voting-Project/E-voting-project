@@ -1,15 +1,15 @@
-import React, { createContext, useContext, useState } from "react";
+// LoginContext.js
+
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { errorDefault } from "@/constants/default.js";
 import useForm from "@/hooks/useForm";
 
 const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  //states
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errors, setErrors] = useState(errorDefault);
   const [user, setUser] = useState(null);
-  
-
-  //functions
 
   const login = (userData) => {
     setIsLoggedIn(true);
@@ -20,20 +20,27 @@ export const LoginProvider = ({ children }) => {
     setIsLoggedIn(false);
     setUser(null);
   };
+  console.log(setErrors)
 
-  const { handleInputChange, formData, errors, setErrors,     isFocused,
-    setIsFocused, } = useForm();
+  const { handleInputChange, formData, isFocused, setIsFocused, handleSubmit } =
+    useForm({setErrors});
+
+  useEffect(() => {
+    // Debugging or additional logic can go here
+    console.log(errors);
+  }, [errors]);
 
   return (
     <LoginContext.Provider
       value={{
-    isFocused,
-    setIsFocused,
+        isFocused,
+        setIsFocused,
         isLoggedIn,
         user,
         login,
         logout,
         handleInputChange,
+        handleSubmit,
         formData,
         errors,
         setErrors,
