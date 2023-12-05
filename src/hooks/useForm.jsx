@@ -1,24 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import credentials from "@/constants/loginInfo.json";
+import { formDefault } from "@/constants/default.js";
 
 const useForm = () => {
-  // state for focused and blurred states
-  const [isFocused, setIsFocused] = useState(false);
-
+  
   // State for form fields
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState(formDefault);
+  const [isFocused, setIsFocused] = useState(false);
 
   //error fields
   const [errors, setErrors] = useState({
-  password: "haha",
-  id: "stupid"
+    password: "haha",
+    userId: "stupid",
   });
 
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -33,9 +33,14 @@ const useForm = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic for form submission here
-    console.log("Form submitted with data:", formData);
+    console.log("submitted")
+    console.log(formData);
   };
+
+  useEffect(() => {
+    console.log("formData changed:", formData);
+    // You can add more debugging logic here if needed
+  }, [formData]);
 
   return {
     isFocused,
