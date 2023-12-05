@@ -10,6 +10,12 @@ const useForm = () => {
     password: "",
   });
 
+  //error fields
+  const [errors, setErrors] = useState({
+    password: "wrong password",
+    id: "wrong id"
+  });
+
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +23,11 @@ const useForm = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  // handle validation
+  const validateField = (name, value) => {
+    // For example, if the email field has an error: setErrors({ ...errors, email: 'Invalid email format' });
   };
 
   // Handle form submission
@@ -29,6 +40,8 @@ const useForm = () => {
   return {
     isFocused,
     setIsFocused,
+    errors,
+    setErrors,
     handleInputChange,
     handleSubmit,
     formData,
