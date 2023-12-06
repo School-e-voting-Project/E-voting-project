@@ -5,11 +5,10 @@ import axios from "axios";
 import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
 
-const useForm = ({ setErrors }) => {
+const useForm = (setErrors ) => {
   const [formData, setFormData] = useState(formDefault);
 
-  const [isFocused, setIsFocused] = useState(false);
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -47,8 +46,7 @@ const useForm = ({ setErrors }) => {
   };
 
   return {
-    isFocused,
-    setIsFocused,
+    
     handleInputChange,
     formData,
     handleSubmit

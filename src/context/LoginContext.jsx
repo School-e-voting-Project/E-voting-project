@@ -20,10 +20,9 @@ export const LoginProvider = ({ children }) => {
     setIsLoggedIn(false);
     setUser(null);
   };
-  console.log(setErrors)
 
-  const { handleInputChange, formData, isFocused, setIsFocused, handleSubmit } =
-    useForm({setErrors});
+  const { handleInputChange, formData, handleSubmit } =
+    useForm(setErrors);
 
   useEffect(() => {
     // Debugging or additional logic can go here
@@ -33,8 +32,6 @@ export const LoginProvider = ({ children }) => {
   return (
     <LoginContext.Provider
       value={{
-        isFocused,
-        setIsFocused,
         isLoggedIn,
         user,
         login,

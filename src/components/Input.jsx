@@ -1,14 +1,9 @@
-import {useLogin} from "@/context/LoginContext"
+import { useLogin } from "@/context/LoginContext";
+import { useState } from "react";
 
 export default function Input({ type, name, label }) {
-  const {
-    isFocused,
-    setIsFocused,
-    handleInputChange,
-    formData,
-    errors,
-    setErrors,
-  } = useLogin();
+  const { handleInputChange, formData, errors, setErrors } = useLogin();
+  const [isFocused, setIsFocused] = useState(false);
 
   const focusedLabel = "text-sm transform -translate-y-full";
   const blurredLabel = "bottom-[20%] text-md";
