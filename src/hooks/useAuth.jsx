@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
+import { useNavigate } from "react-router-dom";
 
-const useForm = (setErrors ) => {
+const useForm = (user, setUser, setErrors) => {
   const [formData, setFormData] = useState(formDefault);
 
-  
+  //saves input data as user types
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -18,14 +19,9 @@ const useForm = (setErrors ) => {
     }));
   };
 
-  const validateField = (name, value) => {
-    // Imdplement your validation logic here
-  };
-
+  const navigate = useNavigate(); //for navigation
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-
     // Validate the entered credentials
     const user = credentials.find(
       (u) => u.name === formData.userId && u.password === formData.password
@@ -33,9 +29,10 @@ const useForm = (setErrors ) => {
 
     if (user) {
       // Successful login
-      console.log("Login successful!");
+      setUser(user.userId)
       setErrors(errorDefault);
       setFormData(formDefault);
+      login();
     } else {
       // Invalid credentials
       setErrors({
@@ -44,12 +41,21 @@ const useForm = (setErrors ) => {
       });
     }
   };
+  const login = () => {
+    setIsLoggedIn(true);
+    navigate("/vote");
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+  };
 
   return {
-    
     handleInputChange,
     formData,
-    handleSubmit
+    handleSubmit,
   };
 };
 

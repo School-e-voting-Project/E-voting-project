@@ -1,5 +1,6 @@
 import { useLogin } from "@/context/LoginContext";
 import { useState } from "react";
+import { errorDefault } from "@/constants/default.js";
 
 export default function Input({ type, name, label }) {
   const { handleInputChange, formData, errors, setErrors } = useLogin();
@@ -8,6 +9,24 @@ export default function Input({ type, name, label }) {
   const focusedLabel = "text-sm transform -translate-y-full";
   const blurredLabel = "bottom-[20%] text-md";
   const errorClass = errors[name] ? "border-b-2 border-b-red-500" : "";
+  function handleBlur() {
+    setIsFocused(false);
+    console.log("blurred");
+    if (formData[name].trim() === "") {
+      
+      console.log("empty field");
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "Field is required",
+      }));
+      return
+    }
+    
+    setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+  }
 
   return (
     <div className="relative transition-transform duration-300 ease-in-out">
@@ -17,10 +36,9 @@ export default function Input({ type, name, label }) {
         name={name}
         value={formData[name]}
         onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onBlur={handleBlur}
         onChange={handleInputChange}
         className={`outline-none p-2 w-full border-b border-b-gray focus:border-b-primary focus:border-b-2 ${errorClass}`}
-        required
       />
       <label
         htmlFor={name}

@@ -2,27 +2,20 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { errorDefault } from "@/constants/default.js";
-import useForm from "@/hooks/useForm";
+import useAuth from "@/hooks/useAuth";
+import { Outlet } from "react-router-dom";
 
 const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errors, setErrors] = useState(errorDefault);
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    setIsLoggedIn(true);
-    setUser(userData);
-  };
-
-  const logout = () => {
-    setIsLoggedIn(false);
-    setUser(null);
-  };
-
-  const { handleInputChange, formData, handleSubmit } =
-    useForm(setErrors);
+  const { handleInputChange, formData, handleSubmit } = useForm(
+    user,
+    setUser,
+    setErrors
+  );
 
   useEffect(() => {
     // Debugging or additional logic can go here
@@ -43,7 +36,7 @@ export const LoginProvider = ({ children }) => {
         setErrors,
       }}
     >
-      {children}
+      <Outlet />
     </LoginContext.Provider>
   );
 };
