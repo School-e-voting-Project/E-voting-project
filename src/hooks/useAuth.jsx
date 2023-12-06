@@ -6,8 +6,10 @@ import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
 import { useNavigate } from "react-router-dom";
 
-const useForm = (user, setUser, setErrors) => {
+const useAuth = ( setErrors) => {
+  const [user, setUser] = useState(null);
   const [formData, setFormData] = useState(formDefault);
+  const [usedCredentials, setUsedCredentials] = useState([]);
 
   //saves input data as user types
   const handleInputChange = (e) => {
@@ -29,10 +31,19 @@ const useForm = (user, setUser, setErrors) => {
 
     if (user) {
       // Successful login
-      setUser(user.userId)
-      setErrors(errorDefault);
-      setFormData(formDefault);
-      login();
+      if (usedCredentials.includes(user.userId)) {
+        setErrors({
+          userId: "Credentials already used",
+          password: "Credentials already used",
+        });
+      } else {
+        // Successful login
+        login(user.userId);
+        setErrors(errorDefault);
+        setFormData(formDefault);
+        setUsedCredentials((prevCredentials) => [...prevCredentials, user.userId]);
+      }
+      
     } else {
       // Invalid credentials
       setErrors({
@@ -40,23 +51,24 @@ const useForm = (user, setUser, setErrors) => {
         password: "Invalid username or password",
       });
     }
+      
+      
+
   };
-  const login = () => {
-    setIsLoggedIn(true);
+  const login = (user) => {
+    setUser(user);
     navigate("/vote");
-    setUser(userData);
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
     setUser(null);
+    navigate("/");
   };
 
-  return {
-    handleInputChange,
-    formData,
-    handleSubmit,
+  return {user, login, logout,handleInputChange, formData, handleSubmit
+    
+    
   };
 };
 
-export default useForm;
+export default useAuth;

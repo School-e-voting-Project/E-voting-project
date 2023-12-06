@@ -9,13 +9,9 @@ const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
   const [errors, setErrors] = useState(errorDefault);
-  const [user, setUser] = useState(null);
 
-  const { handleInputChange, formData, handleSubmit } = useForm(
-    user,
-    setUser,
-    setErrors
-  );
+  const { user, login, logout,handleInputChange, formData, handleSubmit } =
+    useAuth(setErrors);
 
   useEffect(() => {
     // Debugging or additional logic can go here
@@ -25,7 +21,7 @@ export const LoginProvider = ({ children }) => {
   return (
     <LoginContext.Provider
       value={{
-        isLoggedIn,
+        
         user,
         login,
         logout,
