@@ -1,13 +1,14 @@
-import React from 'react';
+import Header from "@/components/Header";
+import Card from "@/components/Card";
+import { useLogin } from "@/context/LoginContext";
 
 const ElectionPage = () => {
+  const { logout } = useLogin();
+
   return (
-    <div className="container mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-4">Election Page</h2>
-      <p className="text-lg text-gray-600">
-        Welcome to the Election Page. Here, you can find information about ongoing elections.
-        {/* Add your election-related content here. */}
-      </p>
+    <div className="">
+      <Header />
+      <Card />
     </div>
   );
 };

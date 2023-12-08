@@ -6,14 +6,13 @@ import { LoginProvider } from "@/context/LoginContext";
 import LoginPage from "@/pages/Login";
 import ErrorPage from "@/pages/Error";
 import ElectionPage from "@/pages/Election";
+import PrivateRoute from "@/components/PrivateRoute";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import {
   createBrowserRouter,
   RouterProvider,
-  createRoutesFromElements
-  
-  ,
+  createRoutesFromElements,
 } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "vote",
-        element: <ElectionPage />,
+        element: <PrivateRoute component = {ElectionPage}/>,
       },
     ],
   },
