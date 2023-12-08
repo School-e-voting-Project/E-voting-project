@@ -1,4 +1,3 @@
-// LoginContext.js
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { errorDefault } from "@/constants/default.js";

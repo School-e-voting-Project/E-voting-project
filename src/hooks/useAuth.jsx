@@ -6,7 +6,7 @@ import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
 import { useNavigate } from "react-router-dom";
 
-const useAuth = ( setErrors) => {
+const useAuth = (setErrors) => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState(formDefault);
   const [usedCredentials, setUsedCredentials] = useState([]);
@@ -38,12 +38,14 @@ const useAuth = ( setErrors) => {
         });
       } else {
         // Successful login
-        login(user.userId);
+        login(formData.userId);
         setErrors(errorDefault);
         setFormData(formDefault);
-        setUsedCredentials((prevCredentials) => [...prevCredentials, user.userId]);
+        setUsedCredentials((prevCredentials) => [
+          ...prevCredentials,
+          user.userId,
+        ]);
       }
-      
     } else {
       // Invalid credentials
       setErrors({
@@ -51,9 +53,6 @@ const useAuth = ( setErrors) => {
         password: "Invalid username or password",
       });
     }
-      
-      
-
   };
   const login = (user) => {
     setUser(user);
@@ -65,10 +64,7 @@ const useAuth = ( setErrors) => {
     navigate("/");
   };
 
-  return {user, login, logout,handleInputChange, formData, handleSubmit
-    
-    
-  };
+  return { user, login, logout, handleInputChange, formData, handleSubmit };
 };
 
 export default useAuth;

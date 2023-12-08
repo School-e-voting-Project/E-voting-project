@@ -11,10 +11,9 @@ export default function Input({ type, name, label }) {
   const errorClass = errors[name] ? "border-b-2 border-b-red-500" : "";
   function handleBlur() {
     setIsFocused(false);
-    console.log("blurred");
+    
     if (formData[name].trim() === "") {
       
-      console.log("empty field");
       setErrors((prev) => ({
         ...prev,
         [name]: "Field is required",
