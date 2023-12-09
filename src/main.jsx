@@ -6,7 +6,6 @@ import { LoginProvider } from "@/context/LoginContext";
 import LoginPage from "@/pages/Login";
 import ErrorPage from "@/pages/Error";
 import ElectionPage from "@/pages/Election";
-import PrivateRoute from "@/components/PrivateRoute";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import {
@@ -27,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "vote",
-        element: <PrivateRoute component = {ElectionPage}/>,
+        element: <ElectionPage />,
       },
     ],
   },

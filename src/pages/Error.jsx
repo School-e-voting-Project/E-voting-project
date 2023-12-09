@@ -7,7 +7,6 @@ const ErrorPage = () => {
       <p className="text-lg text-gray-600">
         The page you are looking for might be unavailable or does not exist.
       </p>
-      
     </div>
   );
 };
