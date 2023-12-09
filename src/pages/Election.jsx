@@ -4,8 +4,11 @@ import { useLogin } from "@/context/LoginContext";
 import contestants from "@/constants/contestants";
 import Warning from "@/components/Warning";
 import Button from "@/components/Button";
+import { useVoting } from "@/context/VotingContext";
+
 const ElectionPage = () => {
   const { logout } = useLogin();
+  const { submitHandler } = useVoting();
 
   const categories = contestants.map((category, index) => (
     <Category key={index} {...category} />
@@ -19,7 +22,7 @@ const ElectionPage = () => {
         <Warning />
         <div className="grid place-items-center">
           {" "}
-          <Button />
+          <Button text={"submit"} handleSubmit={submitHandler} />
         </div>
       </main>
     </div>

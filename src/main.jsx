@@ -1,18 +1,15 @@
 // index.js
 
 import React from "react";
-import ReactDOM from "react-dom";
 import { LoginProvider } from "@/context/LoginContext";
+import { VotingProvider } from "@/context/VotingContext";
 import LoginPage from "@/pages/Login";
 import ErrorPage from "@/pages/Error";
+import CongratsPage from "@/pages/Congratulations";
 import ElectionPage from "@/pages/Election";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +22,18 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
+        path: "congrats",
+        element: <CongratsPage />,
+      },
+      {
         path: "vote",
-        element: <ElectionPage />,
+        element: <VotingProvider />,
+        children: [
+          {
+            index: true,
+            element: <ElectionPage />,
+          },
+        ],
       },
     ],
   },
