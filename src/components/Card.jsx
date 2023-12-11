@@ -7,7 +7,7 @@ export default function Card({ office, img, name, nickname }) {
   return (
     <article
       onClick={() => vote(office, name)}
-      className={`w-[300px] rounded-md border-t-2 border-r-2 border-transparent ease-in-out  transition-all duration-300 hover:border-primary shadow-md ${
+      className={`w-[300px] rounded-md border-t-2 border-r-2 border-transparent ease-in-out  transition-all duration-300  shadow-md ${
         candidate ? "" : "filter grayscale"
       } text-center`}
     >

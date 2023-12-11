@@ -6,7 +6,7 @@ export default function Button({ handleSubmit, text }) {
       onClick={() => {
         handleSubmit();
       }}
-      className="mt-4 capitalize px-8 text-md py-2 bg-primary hover:bg-primary_variant text-white rounded-md"
+      className="mt-4 capitalize px-8 text-md py-2 bg-primary_variant hover:bg-primary text-white rounded-md"
     >
       {text}
     </button>
