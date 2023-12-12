@@ -17,8 +17,7 @@ const CongratulatoryPage = () => {
 
   useEffect(() => {
     if (countdown === 0) {
-      // logout();
-      console.log("User logged out automatically");
+      logout();
     } else {
       // Animate the ellipsis
       const ellipsisInterval = setInterval(() => {
