@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Button from "@/components/Button";
+import { useLogin } from "@/context/LoginContext";
 
 const CongratulatoryPage = () => {
   const [countdown, setCountdown] = useState(5);
   const [ellipsis, setEllipsis] = useState("");
+  const { logout } = useLogin();
 
   useEffect(() => {
     const countdownInterval = setInterval(() => {
@@ -15,8 +17,7 @@ const CongratulatoryPage = () => {
 
   useEffect(() => {
     if (countdown === 0) {
-      // Call your logout function here
-      // For example: logoutUser();
+      // logout();
       console.log("User logged out automatically");
     } else {
       // Animate the ellipsis
@@ -33,18 +34,21 @@ const CongratulatoryPage = () => {
 
   return (
     <div className="w-full min-h-screen grid place-items-center bg-accent">
-      <div>
-        <h1 className="font-bold text-3xl">Congratulations!</h1>
+      <div className="text-center">
+        <h1 className="font-bold text-3xl pb-4">Congratulations!</h1>
         <p>
-          You have successfully voted in the NATIONAL ASSOCIATION OF POLITICAL
-          SCIENCE STUDENTS election
+          You have successfully voted in the <br />{" "}
+          <span className="font-bold text-primary_variant">
+            {" "}
+            NATIONAL ASSOCIATION OF POLITICAL SCIENCE STUDENTS
+          </span>{" "}
+          <br /> election.
         </p>
-        <Button
-          text={"Click here to logout"}
-          handleSubmit={() => abstain(office)}
-        />
-        <p> or </p>
-        <p className = "text-3xl">
+        <Button text={"Click here to logout"} handleSubmit={logout} />
+
+        <p className="">
+          <span className="capitalize">or</span>
+          <br />
           You would be logged out automatically in{" "}
           {countdown == 1 ? `${countdown} sec` : `${countdown} secs`}
           {ellipsis}

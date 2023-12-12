@@ -1,16 +1,13 @@
-// Position.js
+// Category.js
 import Candidate from "@/components/Card";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { useVoting } from "@/context/VotingContext";
 
-export default function Position({ office, contestants }) {
-  const {  abstain} =
-    useVoting();
+export default function Category({ office, contestants }) {
+  const { abstain } = useVoting();
 
   const navigate = useNavigate();
-
-  
 
   return (
     <div
