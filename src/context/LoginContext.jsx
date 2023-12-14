@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { errorDefault } from "@/constants/default.js";
 import useAuth from "@/hooks/useAuth";
@@ -9,18 +8,12 @@ const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [errors, setErrors] = useState(errorDefault);
 
-  const { user, login, logout,handleInputChange, formData, handleSubmit } =
+  const { user, login, logout, handleInputChange, formData, handleSubmit } =
     useAuth(setErrors);
-
-  useEffect(() => {
-    // Debugging or additional logic can go here
-    console.log(errors);
-  }, [errors]);
 
   return (
     <LoginContext.Provider
       value={{
-        
         user,
         login,
         logout,

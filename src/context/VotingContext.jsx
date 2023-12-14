@@ -22,7 +22,6 @@ const actionTypes = {
   ABSTAIN: "ABSTAIN",
 };
 
-// Define reducer function
 const votingReducer = (state, action) => {
   switch (action.type) {
     case actionTypes.VOTE:
@@ -34,11 +33,15 @@ const votingReducer = (state, action) => {
         },
       };
     case actionTypes.ABSTAIN:
+      // Toggle between "ABSTAIN" and undefined
+      const currentVote = state.votes[action.position];
+      const newVote = currentVote === "ABSTAIN" ? {} : "ABSTAIN";
+
       return {
         ...state,
         votes: {
           ...state.votes,
-          [action.position]: "ABSTAIN",
+          [action.position]: newVote,
         },
       };
 

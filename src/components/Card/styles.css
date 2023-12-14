@@ -1,0 +1,51 @@
+article {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  height: 100%;
+}
+
+article.abstained .card-inner {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: #f0f0f0;
+}
+
+.hidden {
+  display: none;
+}
+/* Add these styles to your stylesheet
+
+
+
+
+
+
+
+
+
+ */

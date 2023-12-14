@@ -1,13 +1,13 @@
 // Category.js
-import Candidate from "@/components/Card";
+import Candidate from "@/components/Card/Card";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { useVoting } from "@/context/VotingContext";
 
 export default function Category({ office, contestants }) {
-  const { abstain } = useVoting();
+  const { state, abstain } = useVoting();
 
-  const navigate = useNavigate();
+  const abstained = state.votes[office] === "ABSTAIN";
 
   return (
     <div
@@ -20,7 +20,10 @@ export default function Category({ office, contestants }) {
             <Candidate key={index} office={office} {...contestant} />
           ))}
         </div>
-        <Button text={"abstain"} handleSubmit={() => abstain(office)} />
+        <Button
+          text={abstained ? "abstained" : "abstain"}
+          handleSubmit={() => abstain(office)}
+        />
       </div>
     </div>
   );
