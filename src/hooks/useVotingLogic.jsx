@@ -10,16 +10,9 @@ export const useVotingLogic = (state) => {
     return positions.every((position) => state[position] !== "");
   };
 
-  // Save votes to local storage
-  const saveVotesToLocalStorage = () => {
-    localStorage.setItem("votes", JSON.stringify(state));
-  };
-
   // handles voting
   const submitHandler = () => {
-    console.log(state);
     if (isVotingComplete()) {
-      saveVotesToLocalStorage(state);
       navigate("/congrats");
     } else {
       // Handle case where not all positions are voted
