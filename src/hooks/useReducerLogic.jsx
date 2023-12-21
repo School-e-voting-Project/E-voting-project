@@ -6,19 +6,17 @@ import { useEffect } from "react";
 
 export const useReducerLogic = () => {
   // Define initial state
-  const initialState = generateInitialState();
+  const initialState = generateInitialState();const [state, dispatch] = useReducer(VotingReducer, initialState, () => {
+  const existingData = localStorage.getItem("votes");
+  
+  return existingData ? JSON.parse(existingData) : initialState;
+});
 
-  //create reducer
-  const [state, dispatch] = useReducer(VotingReducer, () => {
-    const existingData = localStorage.getItem("votes");
-    console.log(initialState);
-    console.log(existingData);
-    return existingData ? existingData : initialState;
-  });
+
   //syncing with local storage
-  //   useEffect(() => {
-  //     // localStorage.setItem("votes", JSON.stringify(state));
-  //   }, [state]);
+    useEffect(() => {
+      localStorage.setItem("votes", JSON.stringify(state));
+    }, [state]);
 
   // Actions
   const vote = (position, candidate) => {
