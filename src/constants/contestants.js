@@ -1,7 +1,6 @@
 //import the images you want to use
 //Check Images.jsx (assets folder) for the names of the images exported
 import { img1, img2, img3, img4, img5, img6, img7 } from "@/assets/Images";
-import { data } from "autoprefixer";
 
 const contestants = [
   //Object between this comment and the one below is the basic structure of data
@@ -74,5 +73,14 @@ const contestants = [
   },
   // Add more positions as necessary
 ];
+
+// Create a function to generate the initial state based on the contestants data
+export const generateInitialState = () => {
+  const initialState = {};
+  contestants.forEach(({ office }) => {
+    initialState[office] = "";
+  });
+  return initialState;
+};
 
 export default contestants;

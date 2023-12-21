@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 export default function Card({ office, img, name, nickname }) {
   const { vote, state } = useVotingContext();
-  const candidate = state.votes[office] === name;
+  const candidate = state[office] === name;
   const [hasAbstained, setHasAbstained] = useState(false);
 
   useEffect(() => {
-    setHasAbstained(state.votes[office] === "ABSTAIN");
-  }, [state.votes[office]]);
+    setHasAbstained(state[office] === "ABSTAIN");
+  }, [state[office]]);
 
   const handleClick = () => {
     if (!hasAbstained) {

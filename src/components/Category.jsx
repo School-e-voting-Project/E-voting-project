@@ -6,7 +6,7 @@ import { useVotingContext } from "@/hooks/useVotingContext";
 export default function Category({ office, contestants }) {
   const { state, abstain } = useVotingContext();
 
-  const abstained = state.votes[office] === "ABSTAIN";
+  const abstained = state[office] === "ABSTAIN";
 
   return (
     <div

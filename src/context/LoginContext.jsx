@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 export const LoginContext = createContext();
 
-export const LoginProvider = ({ children }) => {
+export const LoginProvider = () => {
   const [errors, setErrors] = useState(errorDefault);
 
   const { user, login, logout, handleInputChange, formData, handleSubmit } =

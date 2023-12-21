@@ -4,7 +4,6 @@ import { useLoginContext } from "@/hooks/useLoginContext";
 
 const CongratulatoryPage = () => {
   const [countdown, setCountdown] = useState(5);
-  const [ellipsis, setEllipsis] = useState("");
   const { logout } = useLoginContext();
 
   useEffect(() => {

@@ -1,14 +1,11 @@
-// Warning.js
-import React from "react";
+import { ToastContainer } from "react-toastify";
 
 const Warning = () => {
   return (
-    <div className="bg-yellow-200 p-4 rounded-md text-yellow-800">
-      <p className="text-center">
-        Please ensure you have voted in each category. Votes not cast would be
-        considered abstained.
-      </p>
-    </div>
+    <ToastContainer position="top-right" autoClose={5000} hideProgressBar>
+      {" "}
+      Please ensure you have voted in each category.
+    </ToastContainer>
   );
 };
 
