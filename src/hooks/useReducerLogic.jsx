@@ -9,26 +9,16 @@ export const useReducerLogic = () => {
   const initialState = generateInitialState();
 
   //create reducer
-  const [state, dispatch] = useReducer(VotingReducer, initialState);
-
-  // Syncing with local storage on component mount
-  useEffect(() => {
-    // Fetch data from local storage
-    const storedVotes = localStorage.getItem("votes");
-
-    // Parse the stored data (assuming it's in JSON format)
-    const parsedVotes = JSON.parse(storedVotes);
-
-    // If there is data in local storage, dispatch an action to update the state
-    if (parsedVotes) {
-      dispatch({ type: actionTypes.SET_VOTES, payload: parsedVotes });
-    }
-  }, []); // Empty dependency array to run the effect only on mount
-
+  const [state, dispatch] = useReducer(VotingReducer, () => {
+    const existingData = localStorage.getItem("votes");
+    console.log(initialState);
+    console.log(existingData);
+    return existingData ? existingData : initialState;
+  });
   //syncing with local storage
-  useEffect(() => {
-    localStorage.setItem("votes", JSON.stringify(state));
-  }, [state]);
+  //   useEffect(() => {
+  //     // localStorage.setItem("votes", JSON.stringify(state));
+  //   }, [state]);
 
   // Actions
   const vote = (position, candidate) => {
