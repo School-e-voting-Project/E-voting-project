@@ -1,6 +1,5 @@
 // Category.js
 import Candidate from "@/components/Card/Card";
-import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { useVoting } from "@/context/VotingContext";
 

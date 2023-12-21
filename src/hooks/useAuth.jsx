@@ -1,7 +1,4 @@
-// useForm.js
-
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +7,8 @@ const useAuth = (setErrors) => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState(formDefault);
   const [usedCredentials, setUsedCredentials] = useState([]);
+
+  const navigate = useNavigate(); //for navigation
 
   //saves input data as user types
   const handleInputChange = (e) => {
@@ -21,7 +20,6 @@ const useAuth = (setErrors) => {
     }));
   };
 
-  const navigate = useNavigate(); //for navigation
   const handleSubmit = (e) => {
     e.preventDefault();
     // Validate the entered credentials

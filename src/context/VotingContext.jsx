@@ -2,6 +2,7 @@ import React, { createContext, useContext, useReducer, useEffect } from "react";
 import contestants from "@/constants/contestants";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 // Create a function to generate the initial state based on the contestants data
 const generateInitialState = () => {
   const initialState = {};
@@ -10,6 +11,7 @@ const generateInitialState = () => {
   });
   return initialState;
 };
+
 
 // Define initial state
 const initialState = {
@@ -78,10 +80,11 @@ const VotingProvider = ({ children }) => {
   };
 
   const navigate = useNavigate();
+
+  //handles voting
   const submitHandler = () => {
     if (isVotingComplete()) {
       saveVotesToLocalStorage();
-      console.log("submitting");
       navigate("/congrats");
     } else {
       // Handle case where not all positions are voted
