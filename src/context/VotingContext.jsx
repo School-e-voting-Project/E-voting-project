@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import contestants from "@/constants/contestants";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ const generateInitialState = () => {
   });
   return initialState;
 };
-
 
 // Define initial state
 const initialState = {
@@ -53,10 +52,10 @@ const votingReducer = (state, action) => {
 };
 
 // Create context
-const VotingContext = createContext();
+export const VotingContext = createContext();
 
 // Create context provider
-const VotingProvider = ({ children }) => {
+export const VotingProvider = ({ children }) => {
   const [state, dispatch] = useReducer(votingReducer, initialState);
 
   // Actions
@@ -110,14 +109,3 @@ const VotingProvider = ({ children }) => {
     </VotingContext.Provider>
   );
 };
-
-// Custom hook to access the voting context
-const useVoting = () => {
-  const context = useContext(VotingContext);
-  if (!context) {
-    throw new Error("useVoting must be used within a VotingProvider");
-  }
-  return context;
-};
-
-export { VotingProvider, useVoting };

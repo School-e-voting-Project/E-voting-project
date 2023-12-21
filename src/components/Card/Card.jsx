@@ -1,9 +1,9 @@
-import { useVoting } from "@/context/VotingContext";
+import { useVotingContext } from "@/hooks/useVotingContext";
 import "./styles.css";
 import { useEffect, useState } from "react";
 
 export default function Card({ office, img, name, nickname }) {
-  const { vote, state } = useVoting();
+  const { vote, state } = useVotingContext();
   const candidate = state.votes[office] === name;
   const [hasAbstained, setHasAbstained] = useState(false);
 

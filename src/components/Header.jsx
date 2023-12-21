@@ -1,4 +1,4 @@
-import img from "@/assets/logo1.jpg";
+import img from "@/assets/icons/logo1.jpg";
 export default function Header() {
   return (
     <header className="w-full grid place-items-center py-5">
@@ -10,6 +10,8 @@ export default function Header() {
     w-[100px]
     "
         />
+
+        {/* You can change the heading text and subtext below */}
         <h1 className="font-bold text-3xl pb-2">
           NATIONAL ASSOCIATION OF POLITICAL SCIENCE STUDENTS{" "}
         </h1>
@@ -17,6 +19,7 @@ export default function Header() {
           This is an Election for the incoming executives of the National
           Association of Political Science Students.
         </p>
+        {/* You can change the heading text and subtext above */}
       </div>
     </header>
   );

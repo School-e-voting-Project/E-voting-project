@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Button from "@/components/Button";
-import { useLogin } from "@/context/LoginContext";
+import { useLoginContext } from "@/hooks/useLoginContext";
 
 const CongratulatoryPage = () => {
   const [countdown, setCountdown] = useState(5);
   const [ellipsis, setEllipsis] = useState("");
-  const { logout } = useLogin();
+  const { logout } = useLoginContext();
 
   useEffect(() => {
     const countdownInterval = setInterval(() => {
@@ -18,16 +18,6 @@ const CongratulatoryPage = () => {
   useEffect(() => {
     if (countdown === 0) {
       logout();
-    } else {
-      // Animate the ellipsis
-      const ellipsisInterval = setInterval(() => {
-        setEllipsis((prevEllipsis) =>
-          prevEllipsis === "..." ? "" : `${prevEllipsis}.`
-        );
-      }, 333.3);
-
-      // Clear the interval when the component unmounts or countdown reaches 0
-      return () => clearInterval(ellipsisInterval);
     }
   }, [countdown]);
 
@@ -50,7 +40,6 @@ const CongratulatoryPage = () => {
           <br />
           You would be logged out automatically in{" "}
           {countdown == 1 ? `${countdown} sec` : `${countdown} secs`}
-          {ellipsis}
         </p>
       </div>
     </div>

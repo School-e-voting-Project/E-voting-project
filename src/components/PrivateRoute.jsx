@@ -1,10 +1,10 @@
-import { Route, Navigate } from "react-router-dom";
-import { useLogin } from "@/context/LoginContext";
+import { Navigate } from "react-router-dom";
+import { useLoginContext } from "@/hooks/useLoginContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { user } = useLogin();
+  const { user } = useLoginContext();
 
-return  user ? <Component {...rest} /> : <Navigate to="/" replace />;
+  return user ? <Component {...rest} /> : <Navigate to="/" replace />;
 };
 
 export default PrivateRoute;

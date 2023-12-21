@@ -1,12 +1,12 @@
 import Header from "@/components/Header";
 import Category from "@/components/Category";
-import contestants from "@/constants/contestants";
 import Warning from "@/components/Warning";
 import Button from "@/components/Button";
-import { useVoting } from "@/context/VotingContext";
+import contestants from "@/constants/contestants";
+import { useVotingContext } from "@/hooks/useVotingContext";
 
 const ElectionPage = () => {
-  const { submitHandler } = useVoting();
+  const { submitHandler } = useVotingContext();
 
   const categories = contestants.map((category, index) => (
     <Category key={index} {...category} />

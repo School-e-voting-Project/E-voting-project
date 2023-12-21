@@ -1,4 +1,5 @@
 // index.js
+import React from "react";
 import { LoginProvider } from "@/context/LoginContext";
 import { VotingProvider } from "@/context/VotingContext";
 import LoginPage from "@/pages/Login";

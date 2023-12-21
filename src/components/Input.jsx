@@ -1,9 +1,9 @@
-import { useLogin } from "@/context/LoginContext";
+import { useLoginContext } from "@/hooks/useLoginContext";
 import { useState } from "react";
 import { errorDefault } from "@/constants/default.js";
 
 export default function Input({ type, name, label }) {
-  const { handleInputChange, formData, errors, setErrors } = useLogin();
+  const { handleInputChange, formData, errors, setErrors } = useLoginContext();
   const [isFocused, setIsFocused] = useState(false);
 
   const focusedLabel = "text-sm transform -translate-y-full";
@@ -11,20 +11,19 @@ export default function Input({ type, name, label }) {
   const errorClass = errors[name] ? "border-b-2 border-b-red-500" : "";
   function handleBlur() {
     setIsFocused(false);
-    
+
     if (formData[name].trim() === "") {
-      
       setErrors((prev) => ({
         ...prev,
         [name]: "Field is required",
       }));
-      return
+      return;
     }
-    
+
     setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+      ...prev,
+      [name]: "",
+    }));
   }
 
   return (

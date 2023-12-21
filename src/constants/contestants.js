@@ -1,6 +1,11 @@
+//import the images you want to use
+//Check Images.jsx (assets folder) for the names of the images exported
 import { img1, img2, img3, img4, img5, img6, img7 } from "@/assets/Images";
+import { data } from "autoprefixer";
 
 const contestants = [
+  //Object between this comment and the one below is the basic structure of data
+
   {
     office: "president",
     contestants: [
@@ -17,6 +22,8 @@ const contestants = [
       // Add more contestants for the president position if needed
     ],
   },
+  //End of structure.......
+
   {
     office: "vice-president",
     contestants: [

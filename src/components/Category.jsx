@@ -1,10 +1,10 @@
 // Category.js
 import Candidate from "@/components/Card/Card";
 import Button from "@/components/Button";
-import { useVoting } from "@/context/VotingContext";
+import { useVotingContext } from "@/hooks/useVotingContext";
 
 export default function Category({ office, contestants }) {
-  const { state, abstain } = useVoting();
+  const { state, abstain } = useVotingContext();
 
   const abstained = state.votes[office] === "ABSTAIN";
 
