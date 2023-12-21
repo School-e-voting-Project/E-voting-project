@@ -88,9 +88,4 @@ Changes can be made in the `contestants.js` (constants folder)
 
 Changes can be made in the `Congratulations.jsx` (pages folder)
 
-## ToDos
 
-- Add comments
-- Refactor code
-- Check functions in election  page
-- Export login credentials
