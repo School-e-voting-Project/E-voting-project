@@ -6,10 +6,16 @@ import { Outlet } from "react-router-dom";
 export const LoginContext = createContext();
 
 export const LoginProvider = () => {
-  const [errors, setErrors] = useState(errorDefault);
-
-  const { user, login, logout, handleInputChange, formData, handleSubmit } =
-    useAuth(setErrors);
+  const {
+    errors,
+    setErrors,
+    user,
+    login,
+    logout,
+    handleInputChange,
+    formData,
+    handleSubmit,
+  } = useAuth();
 
   return (
     <LoginContext.Provider

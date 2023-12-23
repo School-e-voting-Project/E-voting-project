@@ -20,5 +20,5 @@ export const useVotingLogic = (state) => {
     }
   };
 
-  return { isVotingComplete, saveVotesToLocalStorage, submitHandler };
+  return { isVotingComplete, submitHandler };
 };

@@ -9,7 +9,8 @@ export const useReducerLogic = () => {
   const initialState = generateInitialState();
   const [state, dispatch] = useReducer(VotingReducer, initialState, () => {
     const existingData = localStorage.getItem("votes");
-
+    const savedUser = localStorage.getItem("user");
+    // if(!savedUser === )
     return existingData ? JSON.parse(existingData) : initialState;
   });
 

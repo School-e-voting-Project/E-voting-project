@@ -1,23 +1,37 @@
+//1.
+
 import { useState } from "react";
 import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
 import { useNavigate } from "react-router-dom";
 
-const useAuth = (setErrors) => {
+const useAuth = () => {
+  const [errors, setErrors] = useState(errorDefault);
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState(formDefault);
   const [usedCredentials, setUsedCredentials] = useState([]);
 
-  const navigate = useNavigate(); //for navigation
+  //for navigation
+  const navigate = useNavigate();
 
-  //saves input data as user types
+  //handles typing event
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
+    //saves input data as user types
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+
+    //clears error when user starts typing
+    if (errors[name] !== "") {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -52,17 +66,29 @@ const useAuth = (setErrors) => {
       });
     }
   };
+
   const login = (user) => {
     setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
     navigate("/vote");
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.clear("user");
     navigate("/");
   };
 
-  return { user, login, logout, handleInputChange, formData, handleSubmit };
+  return {
+    errors,
+    setErrors,
+    user,
+    login,
+    logout,
+    handleInputChange,
+    formData,
+    handleSubmit,
+  };
 };
 
 export default useAuth;

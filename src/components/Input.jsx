@@ -5,10 +5,12 @@ import { errorDefault } from "@/constants/default.js";
 export default function Input({ type, name, label }) {
   const { handleInputChange, formData, errors, setErrors } = useLoginContext();
   const [isFocused, setIsFocused] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const focusedLabel = "text-sm transform -translate-y-full";
   const blurredLabel = "bottom-[20%] text-md";
   const errorClass = errors[name] ? "border-b-2 border-b-red-500" : "";
+
   function handleBlur() {
     setIsFocused(false);
 
@@ -19,17 +21,18 @@ export default function Input({ type, name, label }) {
       }));
       return;
     }
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
   }
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
 
   return (
     <div className="relative transition-transform duration-300 ease-in-out">
       <input
-        type={type}
+        type={
+          isPasswordVisible ? "text" : type === "password" ? "password" : "text"
+        }
         id={name}
         name={name}
         value={formData[name]}
@@ -46,6 +49,15 @@ export default function Input({ type, name, label }) {
       >
         {label}
       </label>
+      {type === "password" && (
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className="absolute right-2 top-2 text-dark_gray"
+        >
+          {isPasswordVisible ? "Hide" : "Show"}
+        </button>
+      )}
       {errors[name] && (
         <p className="text-red-500 absolute text-sm">{errors[name]}</p>
       )}

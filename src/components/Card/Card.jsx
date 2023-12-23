@@ -18,16 +18,16 @@ export default function Card({ office, img, name, nickname }) {
     }
   };
 
+  const getFilter = () =>
+    hasAbstained ? "abstained grayscale" : candidate ? "" : "grayscale";
+
+  const getBg = () =>
+    hasAbstained ? "abstained grayscale" : candidate ? "" : "bg-green";
+
   return (
     <article
       onClick={handleClick}
-      className={`w-[300px] h-[400px] rounded-md border-t-2 border-r-2 border-transparent ease-in-out transition-all duration-300 shadow-md ${
-        hasAbstained
-          ? "abstained grayscale text-center"
-          : candidate
-          ? ""
-          : "grayscale"
-      } text-center`}
+      className={`w-[300px] ${getBg()}  h-[400px] text-center rounded-md border-t-2 border-r-2 border-transparent ease-in-out transition-all duration-300 shadow-md ${getFilter()} text-center`}
     >
       <div className="card-inner">
         <div className="front">

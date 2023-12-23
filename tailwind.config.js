@@ -9,6 +9,7 @@ export default {
         secondary: "#ffffff",
         accent: "hsla(0,0%,90%,0.685)",
         gray: "hsla(0,0%,70%)",
+        dark_gray: "hsla(0,0%,50%)",
       },
     },
   },
