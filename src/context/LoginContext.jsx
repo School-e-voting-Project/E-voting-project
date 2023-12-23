@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { errorDefault } from "@/constants/default.js";
-import useAuth from "@/hooks/useAuth";
+import useLoginLogic from "@/hooks/useLoginLogic";
 import { Outlet } from "react-router-dom";
 
 export const LoginContext = createContext();
@@ -10,17 +10,19 @@ export const LoginProvider = () => {
     errors,
     setErrors,
     user,
+    prevUser,
     login,
     logout,
     handleInputChange,
     formData,
     handleSubmit,
-  } = useAuth();
+  } = useLoginLogic();
 
   return (
     <LoginContext.Provider
       value={{
         user,
+        prevUser,
         login,
         logout,
         handleInputChange,

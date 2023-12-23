@@ -1,6 +1,5 @@
 import { useLoginContext } from "@/hooks/useLoginContext";
 import { useState } from "react";
-import { errorDefault } from "@/constants/default.js";
 
 export default function Input({ type, name, label }) {
   const { handleInputChange, formData, errors, setErrors } = useLoginContext();

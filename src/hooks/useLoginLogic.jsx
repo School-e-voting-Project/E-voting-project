@@ -1,21 +1,27 @@
-//1.
-
 import { useState } from "react";
 import credentials from "@/constants/loginInfo.json";
 import { formDefault, errorDefault } from "@/constants/default.js";
 import { useNavigate } from "react-router-dom";
 
-const useAuth = () => {
+const useLoginLogic = () => {
   const [errors, setErrors] = useState(errorDefault);
-  const [user, setUser] = useState(null);
+  const [prevUser, setPrevUser] = useState(null);
   const [formData, setFormData] = useState(formDefault);
   const [usedCredentials, setUsedCredentials] = useState([]);
+  const [user, setUser] = useState(() => {
+    const existingUser = localStorage.getItem("user");
+    if (existingUser) {
+      const savedUser = JSON.parse(existingUser);
+      setPrevUser(savedUser);
+      setUsedCredentials((prevCredentials) => [...prevCredentials, savedUser]);
+      return savedUser;
+    }
+  });
 
   //for navigation
   const navigate = useNavigate();
 
   //handles typing event
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -37,25 +43,26 @@ const useAuth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Validate the entered credentials
-    const user = credentials.find(
-      (u) => u.name === formData.userId && u.password === formData.password
+    const validatedUser = credentials.find(
+      (u) => u.userId === formData.userId && u.password === formData.password
     );
 
-    if (user) {
-      // Successful login
-      if (usedCredentials.includes(user.userId)) {
+    // If validated
+    if (validatedUser) {
+      //if credential used before
+      if (usedCredentials.includes(validatedUser.userId)) {
         setErrors({
           userId: "Credentials already used",
           password: "Credentials already used",
         });
       } else {
-        // Successful login
+        // Successful login (resets everyth)
         login(formData.userId);
         setErrors(errorDefault);
         setFormData(formDefault);
         setUsedCredentials((prevCredentials) => [
           ...prevCredentials,
-          user.userId,
+          validatedUser.userId,
         ]);
       }
     } else {
@@ -69,6 +76,7 @@ const useAuth = () => {
 
   const login = (user) => {
     setUser(user);
+    setPrevUser(JSON.parse(localStorage.getItem("user")));
     localStorage.setItem("user", JSON.stringify(user));
     navigate("/vote");
   };
@@ -83,6 +91,7 @@ const useAuth = () => {
     errors,
     setErrors,
     user,
+    prevUser,
     login,
     logout,
     handleInputChange,
@@ -91,4 +100,4 @@ const useAuth = () => {
   };
 };
 
-export default useAuth;
+export default useLoginLogic;

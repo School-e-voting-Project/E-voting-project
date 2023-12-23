@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function Button({ handleSubmit, text, size = "s" }) {
+export default function Button({
+  handleSubmit,
+  text,
+  size = "s",
+  disabled = false,
+}) {
   const getButtonSizeClass = () => {
     switch (size) {
       case "s":
@@ -17,7 +22,10 @@ export default function Button({ handleSubmit, text, size = "s" }) {
       onClick={() => {
         handleSubmit();
       }}
-      className={`my-4 capitalize ${getButtonSizeClass()} bg-primary_variant hover:bg-primary text-white rounded-md`}
+      disabled={disabled}
+      className={`my-4 capitalize ${
+        disabled ? "bg-gray" : ""
+      } ${getButtonSizeClass()} bg-primary_variant hover:bg-primary text-white rounded-md`}
     >
       {text}
     </button>

@@ -4,13 +4,20 @@ import Warning from "@/components/Warning";
 import Button from "@/components/Button";
 import contestants from "@/constants/contestants";
 import { useVotingContext } from "@/hooks/useVotingContext";
+import { useEffect, useState } from "react";
 
 const ElectionPage = () => {
-  const { submitHandler } = useVotingContext();
+  const { submitHandler, state } = useVotingContext();
+  const [clickable, setClickable] = useState();
 
   const categories = contestants.map((category, index) => (
     <Category key={index} {...category} />
   ));
+
+  useEffect(() => {
+    const positions = Object.keys(state);
+    setClickable(positions.every((position) => state[position] !== ""));
+  }, [state]);
 
   return (
     <div className="bg-secondary ">
@@ -20,7 +27,12 @@ const ElectionPage = () => {
         <Warning />
         <div className="grid place-items-center">
           {" "}
-          <Button size="large" text={"submit"} handleSubmit={submitHandler} />
+          <Button
+            size="large"
+            text={"submit"}
+            disabled={!clickable}
+            handleSubmit={submitHandler}
+          />
         </div>
       </main>
     </div>
