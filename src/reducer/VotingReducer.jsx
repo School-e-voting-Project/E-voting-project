@@ -3,14 +3,16 @@ import { actionTypes } from "@/constants/default";
 export const VotingReducer = (state, action) => {
   switch (action.type) {
     case actionTypes.VOTE:
+      const choice =
+        state[action.position] === action.candidate ? "" : action.candidate;
+
       return {
         ...state,
-        [action.position]: action.candidate,
+        [action.position]: choice,
       };
     case actionTypes.ABSTAIN:
-      // Toggle between "ABSTAIN" and undefined
       const currentVote = state[action.position];
-      const newVote = currentVote === "ABSTAIN" ? "" : "ABSTAINED";
+      const newVote = currentVote === "ABSTAINED" ? "" : "ABSTAINED";
 
       return {
         ...state,

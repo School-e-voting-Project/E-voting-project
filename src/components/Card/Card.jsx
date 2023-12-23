@@ -8,7 +8,7 @@ export default function Card({ office, img, name, nickname }) {
   const [hasAbstained, setHasAbstained] = useState(false);
 
   useEffect(() => {
-    setHasAbstained(state[office] === "ABSTAIN");
+    setHasAbstained(state[office] === "ABSTAINED");
   }, [state[office]]);
 
   const handleClick = () => {
