@@ -28,9 +28,9 @@ const CongratulatoryPage = () => {
           You have successfully voted in the <br />{" "}
           <span className="font-bold text-primary_variant">
             {" "}
-            NATIONAL ASSOCIATION OF POLITICAL SCIENCE STUDENTS
+            ELECTION OF THE FEDERAL RUPUBLIC OF NIGERIA
           </span>{" "}
-          <br /> election.
+          <br /> Election.
         </p>
         <Button text={"Click here to logout"} handleSubmit={logout} />
 
