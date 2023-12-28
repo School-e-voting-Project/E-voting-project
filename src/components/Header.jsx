@@ -1,4 +1,4 @@
-import img from "@/assets/icons/logo1.jpg";
+import img from "@/assets/icon/android-chrome-192x192.png";
 export default function Header() {
   return (
     <header className="w-full grid place-items-center py-5">
