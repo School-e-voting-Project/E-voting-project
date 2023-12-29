@@ -5,6 +5,13 @@ article {
   cursor: pointer;
   transition: transform 0.5s;
 }
+.unselected {
+  filter: grayscale(1);
+  transition: filter 0.25s ease;
+}
+.selected {
+  filter: grayscale(0);
+}
 
 .card-inner {
   transform-style: preserve-3d;

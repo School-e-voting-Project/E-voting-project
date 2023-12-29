@@ -9,6 +9,7 @@ const useLoginLogic = () => {
   const [formData, setFormData] = useState(formDefault);
   const [usedCredentials, setUsedCredentials] = useState([]);
   const [user, setUser] = useState(() => {
+    //checks if user has been logged in already
     const existingUser = localStorage.getItem("user");
     if (existingUser) {
       const savedUser = JSON.parse(existingUser);

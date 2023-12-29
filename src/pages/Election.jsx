@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 const ElectionPage = () => {
   const { submitHandler, state } = useVotingContext();
-  const [clickable, setClickable] = useState();
+  const [clickable, setClickable] = useState(false);
 
   const categories = contestants.map((category, index) => (
     <Category key={index} {...category} />
