@@ -2,7 +2,7 @@ import { useVotingContext } from "@/hooks/useVotingContext";
 import "./styles.css";
 import { useEffect, useState } from "react";
 
-export default function Card({ office, img, name, nickname }) {
+export default function Card({ office, img, name, party }) {
   const { vote, state } = useVotingContext();
   const candidate = state[office] === name;
   const [hasAbstained, setHasAbstained] = useState(false);
@@ -41,7 +41,7 @@ export default function Card({ office, img, name, nickname }) {
           </div>
           <div className="py-4">
             <h2 className="font-bold text-2xl">{name}</h2>
-            <p className="font-normal text-lg">{`(${nickname})`}</p>
+            <p className="font-normal text-lg">{`(${party})`}</p>
           </div>
         </div>
 

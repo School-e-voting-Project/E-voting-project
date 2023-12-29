@@ -1,4 +1,4 @@
-import img from "@/assets/icons/logo1.jpg";
+import img from "@/assets/icon/android-chrome-192x192.png";
 export default function Header() {
   return (
     <header className="w-full grid place-items-center py-5">
@@ -13,11 +13,10 @@ export default function Header() {
 
         {/* You can change the heading text and subtext below */}
         <h1 className="font-bold text-3xl pb-2">
-          NATIONAL ASSOCIATION OF POLITICAL SCIENCE STUDENTS{" "}
+          ELECTION OF THE FEDERAL RUPUBLIC OF NIGERIA{" "}
         </h1>
         <p>
-          This is an Election for the incoming executives of the National
-          Association of Political Science Students.
+          This is an Election for the incoming executives of the Federal Republic of Nigeria.
         </p>
         {/* You can change the heading text and subtext above */}
       </div>

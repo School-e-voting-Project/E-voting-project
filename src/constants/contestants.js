@@ -1,6 +1,6 @@
 //import the images you want to use
 //Check Images.jsx (assets folder) for the names of the images exported
-import { img1, img2, img3, img4, img5, img6, img7 } from "@/assets/Images";
+import { img1, img2, img3} from "@/assets/Images";
 
 const contestants = [
   //Object between this comment and the one below is the basic structure of data
@@ -11,12 +11,17 @@ const contestants = [
       {
         name: "John Doe",
         img: img2,
-        nickname: "JD",
+        party: "PDP",
       },
       {
-        name: "Jane Doe",
+        name: "Evans Chuks",
+        img: img1,
+        party: "APC",
+      },
+      {
+        name: "Bright White",
         img: img3,
-        nickname: "Jane",
+        party: "NNPP",
       },
       // Add more contestants for the president position if needed
     ],
@@ -28,45 +33,50 @@ const contestants = [
     contestants: [
       {
         name: "Alex Smith",
-        img: img4,
-        nickname: "Alex",
+        img: img1,
+        party: "APC",
       },
       {
         name: "Chris Johnson",
-        img: img5,
-        nickname: "Chris",
+        img: img2,
+        party: "PDP",
       },
       {
         name: "Emma White",
-        img: img6,
-        nickname: "Emma",
+        img: img3,
+        party: "NNPP",
       },
       // Add more contestants for the vice-president position if needed
     ],
   },
   {
-    office: "public-relations-officer",
+    office: "House of Representative",
     contestants: [
       {
         name: "Sophia Brown",
-        img: img7,
-        nickname: "Sophia",
+        img: img3,
+        party: "NNPP",
+      },
+      {
+        name: "Elizabeth Akindele",
+        img: img2,
+        party: "PDP",
       },
       // Add more contestants for the public relations officer position if needed
     ],
   },
   {
-    office: "general-secretary",
+    office: "Local Government Chairman",
     contestants: [
       {
         name: "Michael Green",
         img: img1,
-        nickname: "Mike",
+        party: "APC",
       },
       {
         name: "Olivia Davis",
         img: img2,
-        nickname: "Olivia",
+        party: "PDP",
       },
       // Add more contestants for the general secretary position if needed
     ],
