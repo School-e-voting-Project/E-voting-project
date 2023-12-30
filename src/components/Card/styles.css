@@ -6,11 +6,10 @@ article {
   transition: transform 0.5s;
 }
 .unselected {
-  filter: grayscale(1);
-  transition: filter 0.25s ease;
 }
 .selected {
-  filter: grayscale(0);
+  background: hsla(256, 29%, 90%, 0.842);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .card-inner {

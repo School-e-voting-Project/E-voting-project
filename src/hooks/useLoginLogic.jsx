@@ -82,9 +82,11 @@ const useLoginLogic = () => {
     navigate("/vote");
   };
 
+  //clears data stored in localstorage
   const logout = () => {
     setUser(null);
     localStorage.clear("user");
+    localStorage.clear("votes");
     navigate("/");
   };
 

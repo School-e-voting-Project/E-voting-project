@@ -28,15 +28,32 @@ export default function Card({ office, img, name, party }) {
   return (
     <article
       onClick={handleClick}
-      className={`w-[300px]  ${getFilter()}   h-[400px] rounded-md border-t-2 border-r-2 border-transparent ease-in-out transition-all duration-300 shadow-md text-center`}
+      className={`w-[300px]     h-[400px] rounded-md border-t-2 border-r-2 border-transparent ease-in-out transition-all duration-300 shadow-md text-center ${getFilter()}`}
     >
       <div className="card-inner">
-        <div className="front">
-          <div className="h-[250px] overflow-hidden rounded-md group transition-all duration-300">
+        <div className="front relative z-1">
+          {candidate && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="green"
+              className=" border-rounded w-12 h-12 z-[10] absolute right-[-5px] top-[-3px]"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          )}
+
+          <div className=" z-1 h-[250px] overflow-hidden grid place-items-center rounded-md group transition-all duration-300">
             <img
               src={img}
               alt={name}
-              className="object-cover transition-all duration-300 group-hover:scale-125"
+              className="w-[60%] transition-all duration-300 group-hover:scale-125 z-1"
             />
           </div>
           <div className="py-4">
@@ -52,3 +69,4 @@ export default function Card({ office, img, name, party }) {
     </article>
   );
 }
+99;
